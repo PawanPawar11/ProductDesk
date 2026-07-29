@@ -1,8 +1,17 @@
 ﻿<div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
-        <h2 class="text-center mb-4">Login</h2>
+        <h2 class="text-center mb-4">Register</h2>
 
         <form>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text"
+                       class="form-control"
+                       id="username"
+                       placeholder="Enter your username"
+                       required />
+            </div>
+
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email"
@@ -12,24 +21,24 @@
                        required />
             </div>
 
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="password" class="form-label">Password</label>
                 <input type="password"
                        class="form-control"
                        id="password"
-                       placeholder="Enter your password"
+                       placeholder="Create a password"
                        required />
             </div>
 
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">
-                    Login
+                    Register
                 </button>
             </div>
 
             <p class="text-center mt-3 mb-0">
-                Don't have an account?
-                <a asp-action="Register" class="text-decoration-none">Register</a>
+                Already have an account?
+                <a asp-action="Login" class="text-decoration-none">Login</a>
             </p>
         </form>
     </div>
