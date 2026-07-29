@@ -1,0 +1,85 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+artifacts/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# .NET
+*.cache
+*.dbmdl
+*.jfm
+*.pdb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+!packages/build/
+!packages/repositories.config
+
+# npm
+node_modules/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Secrets
+secrets.json
+
+# Publish output
+publish/
+
+# Test results
+TestResults/
+*.trx
+
+# Coverage
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
+
+# Generated files
+Generated/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# JetBrains
+_ReSharper*/
+*.DotSettings.user
+
+# Miscellaneous
+*.tmp
+*.temp
