@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,21 +12,23 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Dashboard" asp-action="Index">ProductDesk</a>
+        <nav class="navbar navbar-expand-sm navbar-light navbar-retro py-3 mb-4">
+            <div class="container">
+                <a class="retro-brand-badge" asp-area="" asp-controller="Dashboard" asp-action="Index">
+                    <i class="bi bi-box-seam-fill"></i> ProductDesk
+                </a>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-4">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer-retro text-center mt-5">
         <div class="container">
-            &copy; 2026 - ProductDesk - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <span>&copy; 2026 - <strong>ProductDesk</strong> • Built with ASP.NET Core MVC</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

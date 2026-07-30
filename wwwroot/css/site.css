@@ -1,31 +1,268 @@
-html {
-  font-size: 14px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap');
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+    --neu-bg: #FEFCE8;
+    --neu-card-bg: #FFFFFF;
+    --neu-black: #000000;
+    --neu-border-width: 3px;
+    
+    /* Vibrant Neubrutalism Palette */
+    --neu-purple: #7C3AED;
+    --neu-yellow: #FACC15;
+    --neu-pink: #F43F5E;
+    --neu-cyan: #06B6D4;
+    --neu-lime: #10B981;
+    --neu-orange: #FB923C;
+    
+    /* Shadows */
+    --neu-shadow: 5px 5px 0px #000000;
+    --neu-shadow-lg: 8px 8px 0px #000000;
+    --neu-shadow-sm: 3px 3px 0px #000000;
+    --neu-radius: 12px;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: var(--neu-bg);
+    color: var(--neu-black);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-bottom: 60px;
+    background-image: radial-gradient(#000000 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: 0 0;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+h1, h2, h3, h4, h5, h6, .retro-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    color: var(--neu-black);
+    letter-spacing: -0.03em;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* --- Neubrutalism Navbar --- */
+.navbar-retro {
+    background-color: #FFFFFF !important;
+    border-bottom: 3px solid var(--neu-black);
+    box-shadow: 0 4px 0px #000000;
+}
+
+.retro-brand-badge {
+    background-color: var(--neu-purple);
+    color: #FFFFFF !important;
+    font-weight: 900;
+    font-size: 1.25rem;
+    padding: 8px 18px;
+    border-radius: 10px;
+    border: 3px solid var(--neu-black);
+    box-shadow: var(--neu-shadow-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.retro-brand-badge:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0px #000000;
+    color: #FFFFFF;
+}
+
+.retro-brand-badge:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px #000000;
+}
+
+/* --- Neubrutalism Cards --- */
+.card-retro {
+    background-color: var(--neu-card-bg);
+    border: 3px solid var(--neu-black);
+    border-radius: var(--neu-radius);
+    box-shadow: var(--neu-shadow-lg);
+    padding: 2.2rem;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Neubrutalism Form Controls --- */
+.form-control-retro, .form-select-retro {
+    border: 3px solid var(--neu-black);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: var(--neu-black);
+    background-color: #FFFFFF;
+    box-shadow: var(--neu-shadow-sm);
+    transition: all 0.15s ease;
+}
+
+.form-control-retro::placeholder {
+    color: #6B7280;
+    font-weight: 600;
+}
+
+.form-control-retro:focus, .form-select-retro:focus {
+    border-color: var(--neu-black);
+    background-color: #FFFFFF;
+    color: var(--neu-black);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #000000;
+    outline: none;
+}
+
+.form-label-retro {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--neu-black);
+    margin-bottom: 6px;
+}
+
+/* --- Neubrutalism Buttons --- */
+.btn-retro {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    border: 3px solid var(--neu-black) !important;
+    border-radius: 10px;
+    padding: 11px 22px;
+    box-shadow: var(--neu-shadow);
+    transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.9rem;
+}
+
+.btn-retro:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px #000000;
+}
+
+.btn-retro:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000000;
+}
+
+.btn-retro-primary {
+    background-color: var(--neu-purple);
+    color: #FFFFFF !important;
+}
+
+.btn-retro-secondary {
+    background-color: var(--neu-cyan);
+    color: #000000 !important;
+}
+
+.btn-retro-accent {
+    background-color: var(--neu-yellow);
+    color: #000000 !important;
+}
+
+.btn-retro-warning {
+    background-color: var(--neu-orange);
+    color: #FFFFFF !important;
+}
+
+.btn-retro-danger {
+    background-color: var(--neu-pink);
+    color: #FFFFFF !important;
+}
+
+.btn-retro-outline {
+    background-color: #FFFFFF;
+    color: var(--neu-black) !important;
+}
+
+.btn-retro-sm {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    box-shadow: var(--neu-shadow-sm);
+}
+
+.btn-retro-sm:hover {
+    box-shadow: 5px 5px 0px #000000;
+}
+
+.btn-retro-lg {
+    padding: 14px 28px;
+    font-size: 1.05rem;
+}
+
+/* --- Neubrutalism Tables --- */
+.table-retro-container {
+    background-color: #FFFFFF;
+    border: 3px solid var(--neu-black);
+    border-radius: var(--neu-radius);
+    box-shadow: var(--neu-shadow-lg);
+    overflow: hidden;
+}
+
+.table-retro {
+    margin-bottom: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--neu-black);
+}
+
+.table-retro thead th {
+    background-color: var(--neu-yellow);
+    color: var(--neu-black);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    padding: 16px 20px;
+    border-bottom: 3px solid var(--neu-black);
+}
+
+.table-retro tbody td {
+    padding: 16px 20px;
+    vertical-align: middle;
+    border-bottom: 2px solid #000000;
+    font-weight: 700;
+}
+
+.table-retro tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-retro tbody tr:hover {
+    background-color: #FEF9C3;
+}
+
+/* --- Neubrutalism Badges & Alerts --- */
+.badge-retro {
+    border: 2px solid var(--neu-black);
+    box-shadow: 2px 2px 0px #000000;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.alert-retro {
+    border: 3px solid var(--neu-black);
+    box-shadow: var(--neu-shadow);
+    border-radius: 10px;
+    font-weight: 700;
+    background-color: #E0F2FE;
+    color: var(--neu-black);
+}
+
+/* --- Footer --- */
+.footer-retro {
+    background-color: #FFFFFF;
+    border-top: 3px solid var(--neu-black);
+    padding: 20px 0;
+    font-weight: 700;
+    color: var(--neu-black);
 }
