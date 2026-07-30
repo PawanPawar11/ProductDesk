@@ -11,7 +11,15 @@ namespace ProductDesk.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var productList = _context.Products.Select(Product => new ProductDto
+            {
+                Id = Product.Id,
+                Name = Product.Name,
+                Description = Product.Description,
+                Cost = Product.Cost,
+            }).ToList();
+
+            return View(productList);
         }
 
         public IActionResult AddProductPage() {

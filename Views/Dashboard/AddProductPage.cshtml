@@ -3,6 +3,14 @@
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow-sm p-4" style="max-width: 600px; width: 100%;">
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                <span>@ViewBag.Message</span>
+            </div>
+        }
+
         <h2 class="text-center mb-4">Add Product</h2>
 
         <form asp-action="CreateProduct">
