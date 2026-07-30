@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductDesk.Data;
 using ProductDesk.Dto;
@@ -9,6 +10,8 @@ namespace ProductDesk.Controllers
 {
     public class AuthController(AppDbContext _dbContext, JwtTokenService _jwtTokenService) : Controller
     {
+        private readonly PasswordHasher<User> _passwordHasher = new PasswordHasher<User>();
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -32,13 +35,13 @@ namespace ProductDesk.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterUser(UserDto userDto)
         {
-            if(userDto == null)
+            if (userDto == null)
             {
                 ViewBag.Message = "All fields (Username, Email and Password) are required in order to Register!";
                 return View("Register");
             }
 
-            if(userDto.Username == null || userDto.Email == null || userDto.Password == null)
+            if (string.IsNullOrWhiteSpace(userDto.Username) || string.IsNullOrWhiteSpace(userDto.Email) || string.IsNullOrWhiteSpace(userDto.Password))
             {
                 ViewBag.Message = "Please check whether all the required fields (Username, Email and Password) are filled!";
                 return View("Register");
@@ -46,14 +49,16 @@ namespace ProductDesk.Controllers
 
             var doesUserExist = await _dbContext.Users.FirstOrDefaultAsync(User => User.Email == userDto.Email);
 
-            if(doesUserExist == null)
+            if (doesUserExist == null)
             {
                 var user = new User
                 {
                     Username = userDto.Username,
-                    Email = userDto.Email,
-                    Password = userDto.Password,
+                    Email = userDto.Email
                 };
+
+                // Hash the password securely before saving to DB
+                user.Password = _passwordHasher.HashPassword(user, userDto.Password);
 
                 await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
@@ -68,7 +73,7 @@ namespace ProductDesk.Controllers
             }
             else
             {
-                ViewBag.Message = "User already exits. Please Login!";
+                ViewBag.Message = "User already exists. Please Login!";
                 return View("Register");
             }
         }
@@ -76,13 +81,13 @@ namespace ProductDesk.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginUser(UserDto userDto)
         {
-            if(userDto == null)
+            if (userDto == null)
             {
                 ViewBag.Message = "All fields (Email and Password) are required in order to Login!";
                 return View("Login");
             }
 
-            if(userDto.Email == null || userDto.Password == null)
+            if (string.IsNullOrWhiteSpace(userDto.Email) || string.IsNullOrWhiteSpace(userDto.Password))
             {
                 ViewBag.Message = "Please check whether all the required fields (Email and Password) are filled!";
                 return View("Login");
@@ -90,13 +95,16 @@ namespace ProductDesk.Controllers
 
             var doesUserExist = await _dbContext.Users.FirstOrDefaultAsync(User => User.Email == userDto.Email);
 
-            if(doesUserExist == null)
+            if (doesUserExist == null)
             {
-                ViewBag.Message = "User doesn't exit. Please Register!";
+                ViewBag.Message = "User doesn't exist. Please Register!";
                 return View("Login");
             }
-            
-            if(doesUserExist.Password != userDto.Password)
+
+            // Verify the entered plain-text password against the stored hashed password
+            var result = _passwordHasher.VerifyHashedPassword(doesUserExist, doesUserExist.Password, userDto.Password);
+
+            if (result == PasswordVerificationResult.Failed)
             {
                 ViewBag.Message = "Password is incorrect. Please type correct password in order to Login!";
                 return View("Login");
