@@ -1,1 +1,17 @@
 ﻿<p>Hello, you're inside the Dashboard!</p>
+
+@* 
+    <input asp-controller="Auth" asp-action="Logout" value="Logout" type="submit" class="btn btn-primary" />
+
+    <p>--------------------------------------------------------------------------------------------------</p>
+
+    <form asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
+        <button type="submit" class="btn-retro btn-retro-coral btn-retro-sm">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+    </form> 
+*@
+
+<form asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
+    <input type="submit" value="Logout" class="btn btn-primary" />
+</form>

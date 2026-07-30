@@ -19,6 +19,13 @@ namespace ProductDesk.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            // Delete JWT Cookie on Logout
+            Response.Cookies.Delete("jwtToken");
+            return RedirectToAction("Login", "Auth");
+        }
+
         public async Task<IActionResult> RegisterUser(UserDto userDto)
         {
             if(userDto == null)
