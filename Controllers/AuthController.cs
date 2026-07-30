@@ -9,16 +9,19 @@ namespace ProductDesk.Controllers
 {
     public class AuthController(AppDbContext _dbContext, JwtTokenService _jwtTokenService) : Controller
     {
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        [HttpPost]
         public IActionResult Logout()
         {
             // Delete JWT Cookie on Logout
@@ -26,6 +29,7 @@ namespace ProductDesk.Controllers
             return RedirectToAction("Login", "Auth");
         }
 
+        [HttpPost]
         public async Task<IActionResult> RegisterUser(UserDto userDto)
         {
             if(userDto == null)
@@ -69,6 +73,7 @@ namespace ProductDesk.Controllers
             }
         }
 
+        [HttpPost]
         public async Task<IActionResult> LoginUser(UserDto userDto)
         {
             if(userDto == null)
