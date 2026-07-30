@@ -52,5 +52,43 @@ namespace ProductDesk.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> EditProductPage(int Id)
+        {
+            var product = await _context.Products.FindAsync(Id);
+
+            if (product == null)
+            {
+                ViewBag.Message = $"Product with ID: {Id} doesn't exit!";
+                return View("Index");
+            }
+
+            var productDto = new ProductDto
+            {
+                Name = product.Name,
+                Description = product.Description,
+                Cost = product.Cost,
+            };
+
+            return View(productDto);
+        }
+
+        public async Task<IActionResult> UpdateProduct(ProductDto productDto)
+        {
+            var product = await _context.Products.FindAsync(productDto.Id);
+
+            if(product == null)
+            {
+                return NotFound();
+            }
+
+            product.Name = productDto.Name;
+            product.Description = productDto.Description;
+            product.Cost = productDto.Cost;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }
