@@ -49,16 +49,19 @@ h1, h2, h3, h4, h5, h6, .retro-brand {
     background-color: var(--neu-purple);
     color: #FFFFFF !important;
     font-weight: 900;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     padding: 8px 18px;
+    height: 42px;
     border-radius: 10px;
     border: 3px solid var(--neu-black);
     box-shadow: var(--neu-shadow-sm);
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     text-decoration: none;
     transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
 }
 
 .retro-brand-badge:hover {
@@ -68,6 +71,51 @@ h1, h2, h3, h4, h5, h6, .retro-brand {
 }
 
 .retro-brand-badge:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px #000000;
+}
+
+/* --- Matching Navbar User & Logout Blocks --- */
+.user-badge-nav, .btn-retro-nav-logout {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    line-height: 1;
+    padding: 0 16px;
+    height: 42px;
+    border: 3px solid var(--neu-black) !important;
+    border-radius: 10px;
+    box-shadow: var(--neu-shadow-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.user-badge-nav {
+    background-color: var(--neu-yellow);
+    color: var(--neu-black);
+}
+
+.btn-retro-nav-logout {
+    background-color: #FFFFFF;
+    color: var(--neu-black) !important;
+    cursor: pointer;
+    transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0;
+    text-decoration: none;
+}
+
+.btn-retro-nav-logout:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #000000;
+    background-color: var(--neu-pink);
+    color: #FFFFFF !important;
+}
+
+.btn-retro-nav-logout:active {
     transform: translate(1px, 1px);
     box-shadow: 2px 2px 0px #000000;
 }
