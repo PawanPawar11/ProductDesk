@@ -1,13 +1,25 @@
-﻿<div class="container d-flex justify-content-center align-items-center min-vh-100">
+﻿@using ProductDesk.Dto
+@model UserDto
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
         <h2 class="text-center mb-4">Register</h2>
 
-        <form>
+        <form asp-action="RegisterUser">
+            @if (!string.IsNullOrEmpty(ViewBag.Message))
+            {
+                <div class="alert alert-info d-flex align-items-center" role="alert">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    <span>@ViewBag.Message</span>
+                </div>
+            }
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text"
                        class="form-control"
                        id="username"
+                       name="Username"
+                       asp-for="Username"
                        placeholder="Enter your username"
                        required />
             </div>
@@ -17,6 +29,8 @@
                 <input type="email"
                        class="form-control"
                        id="email"
+                       name="Email"
+                       asp-for="Email"
                        placeholder="Enter your email"
                        required />
             </div>
@@ -26,6 +40,8 @@
                 <input type="password"
                        class="form-control"
                        id="password"
+                       name="Password"
+                       asp-for="Password"
                        placeholder="Create a password"
                        required />
             </div>
