@@ -90,5 +90,20 @@ namespace ProductDesk.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> DeleteProduct(int Id)
+        {
+            var product = await _context.Products.FindAsync(Id);
+
+            if(product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }
