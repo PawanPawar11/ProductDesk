@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using ProductDesk.Data;
 using ProductDesk.Dto;
 using ProductDesk.Models;
+using ProductDesk.Services;
 
 namespace ProductDesk.Controllers
 {
-    public class AuthController(AppDbContext context) : Controller
+    public class AuthController(AppDbContext _dbContext, JwtTokenService _jwtTokenService) : Controller
     {
         public IActionResult Login()
         {
@@ -32,7 +33,7 @@ namespace ProductDesk.Controllers
                 return View("Register");
             }
 
-            var doesUserExist = await context.Users.FirstOrDefaultAsync(User => User.Email == userDto.Email);
+            var doesUserExist = await _dbContext.Users.FirstOrDefaultAsync(User => User.Email == userDto.Email);
 
             if(doesUserExist == null)
             {
@@ -43,8 +44,14 @@ namespace ProductDesk.Controllers
                     Password = userDto.Password,
                 };
 
-                context.Users.Add(user);
-                await context.SaveChangesAsync();
+                _dbContext.Users.Add(user);
+                await _dbContext.SaveChangesAsync();
+
+                // Generate JWT Token
+                string token = _jwtTokenService.GenerateToken(user);
+
+                // Store JWT in HttpOnly Cookie
+                SetJwtCookie(token);
 
                 return RedirectToAction("Index", "Dashboard");
             }
@@ -69,7 +76,7 @@ namespace ProductDesk.Controllers
                 return View("Login");
             }
 
-            var doesUserExist = await context.Users.FirstOrDefaultAsync(User => User.Email == userDto.Email);
+            var doesUserExist = await _dbContext.Users.FirstOrDefaultAsync(User => User.Email == userDto.Email);
 
             if(doesUserExist == null)
             {
@@ -83,7 +90,25 @@ namespace ProductDesk.Controllers
                 return View("Login");
             }
 
+            // Generate JWT Token
+            string token = _jwtTokenService.GenerateToken(doesUserExist);
+
+            // Store JWT in HttpOnly Cookie
+            SetJwtCookie(token);
+
             return RedirectToAction("Index", "Dashboard");
+        }
+
+        private void SetJwtCookie(string token)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true, // Protects against XSS attacks
+                Secure = true,   // Set to true for HTTPS
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTime.UtcNow.AddMinutes(60)
+            };
+            Response.Cookies.Append("jwtToken", token, cookieOptions);
         }
     }
 }
