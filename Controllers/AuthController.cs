@@ -55,7 +55,7 @@ namespace ProductDesk.Controllers
                     Password = userDto.Password,
                 };
 
-                _dbContext.Users.Add(user);
+                await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
 
                 // Generate JWT Token

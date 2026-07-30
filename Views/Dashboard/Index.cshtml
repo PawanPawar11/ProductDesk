@@ -3,9 +3,8 @@
         <h2 class="mb-0">Products</h2>
 
         <div>
-            <a href="/Product/Create" class="btn btn-primary">
-                <i class="bi bi-plus-lg me-1"></i>
-                Add a Product
+            <a asp-action="AddProductPage" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-1"></i>Add a Product
             </a>
 
             <form asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
